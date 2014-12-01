@@ -42,6 +42,6 @@ class Migration_Initial_Scheme extends CI_Migration {
 	
 	public function down()
 	{
-		$this->dbforge->drop_table('blog');
+		$this->dbforge->drop_table('users');
 	}
 }
