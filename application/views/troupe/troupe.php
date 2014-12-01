@@ -17,7 +17,7 @@
 						<form role="form" method="post" action="/troupe/save/<?=$troupe['troupe_id']?>">
 
 							<div class="form-group">
-								<label>όνομα θιάσου</label>
+								<label>Όνομα θιάσου</label>
 								<input class="form-control" name="troupe_name" value="<?=$troupe['troupe_name']?>">
 							</div>
 

@@ -68,8 +68,17 @@
                         </li>
 
                         <li>
-                            <a <?if($this->uri->segment(1)=='troupe'){?>class="active"<?}?> href="troupe"><i class="fa fa-users fa-fw"></i> Θίασοι</a>
+                            <a <?if($this->uri->segment(1)=='troupe'){?>class="active"<?}?> href="/troupe"><i class="fa fa-users fa-fw"></i> Θίασοι</a>
                         </li>
+
+                        <li>
+                            <a <?if($this->uri->segment(1)=='theater'){?>class="active"<?}?> href="/theater"><i class="fa fa-building fa-fw"></i> Θέατρα</a>
+                        </li>
+
+                        <li>
+                            <a <?if($this->uri->segment(1)=='performance'){?>class="active"<?}?> href="/performance"><i class="fa fa-child fa-fw"></i> Παραστάσεις</a>
+                        </li>
+
 
                     </ul>
                 </div>
