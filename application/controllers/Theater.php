@@ -40,6 +40,8 @@ class Theater extends CI_Controller {
 		if ($this->input->post())
 		{
 			$this->form_validation->set_rules('theater_name', 'theater name', 'required');
+			
+			// TODO: save theater
 		}
 	}
 }
