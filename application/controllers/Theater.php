@@ -27,7 +27,7 @@ class Theater extends CI_Controller {
 	{
 		$this->load->model('theater');
 		
-		$this->tempalte_data['theater'] = $this->troupe->get_troupe($troupe_id);
+		$this->tempalte_data['theater'] = $this->theater->get_theater($theater_id);
 		
 		$this->template->load('main', 'theater/theater', $this->template_data);
 	}
