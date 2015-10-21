@@ -5,54 +5,45 @@
 </div>
 
 <div class="row">
-                <div class="col-lg-12">
-                    <div class="panel panel-default">
-                        <div class="panel-heading">
-                            Θίασοι
-                            <div class="pull-right">
-	                            <a href="/troupe/add" class="btn btn-outline btn-primary btn-xs">προσθήκη νέου</a>
-                            </div>
-                        </div>
-                        <!-- /.panel-heading -->
-                        <div class="panel-body">
-                            <div class="table-responsive">
-                                <table class="table">
-                                    <thead>
-                                        <tr>
-                                            <th>#</th>
-                                            <th>First Name</th>
-                                            <th>Last Name</th>
-                                            <th>Username</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        <tr>
-                                            <td>1</td>
-                                            <td>Mark</td>
-                                            <td>Otto</td>
-                                            <td>@mdo</td>
-                                        </tr>
-                                        <tr>
-                                            <td>2</td>
-                                            <td>Jacob</td>
-                                            <td>Thornton</td>
-                                            <td>@fat</td>
-                                        </tr>
-                                        <tr>
-                                            <td>3</td>
-                                            <td>Larry</td>
-                                            <td>the Bird</td>
-                                            <td>@twitter</td>
-                                        </tr>
-                                    </tbody>
-                                </table>
-                            </div>
-                            <!-- /.table-responsive -->
-                        </div>
-                        <!-- /.panel-body -->
-                    </div>
-                    <!-- /.panel -->
-                </div>
-                <!-- /.col-lg-6 -->
-            </div>
-            <!-- /.row -->
+	<div class="col-lg-12">
+		<div class="panel panel-default">
+			<div class="panel-heading">
+				Θίασοι
+				<div class="pull-right">
+					<a href="/troupe/add" class="btn btn-outline btn-primary btn-xs">προσθήκη νέου</a>
+				</div>
+			</div>
+			<!-- /.panel-heading -->
+			<div class="panel-body">
+				<div class="table-responsive">
+					<table class="table">
+						<thead>
+							<tr>
+								<th class="col-md-2">#</th>
+								<th class="col-md-8">Όνομα θιάσου</th>
+								<th class="col-md-2">ενέργεια</th>
+							</tr>
+						</thead>
+						<tbody>
+<?foreach($troupes as $troupe){?>
+							<tr>
+								<td><?=$troupe['record_id']?>
+								<td><?=$troupe['name']?>
+								<td>
+									<a href="/troupe/edit/<?=$troupe['record_id']?>"  class="btn btn-outline btn-primary btn-xs">edit</a>
+									<a href="#" class="btn btn-outline btn-primary btn-xs">delete</a>
+								</td>
+							</tr>
+<?}?>
+						</tbody>
+					</table>
+				</div>
+				<!-- /.table-responsive -->
+			</div>
+			<!-- /.panel-body -->
+		</div>
+		<!-- /.panel -->
+	</div>
+	<!-- /.col-lg-6 -->
+</div>
+<!-- /.row -->

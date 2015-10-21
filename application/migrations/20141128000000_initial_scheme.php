@@ -39,24 +39,59 @@ class Migration_Initial_Scheme extends CI_Migration {
 		$this->dbforge->add_key('user_id', TRUE);
 		$this->dbforge->create_table('users', TRUE);
 		
+		// add default user so we can have a null database usable application
 		$this->db->insert('users', array('email'=>'default@user.com', 'password'=>'default'));
 		
 		/* troupes table */
 		$fields = array(
-			'troupe_id' => array(
+			'record_id' => array(
 				'type' => 'INT',
 				'constraint' => 8,
 				'auto_increment' => TRUE
 			),
-			'troupe_name' => array(
+			'name' => array(
 				'type' => 'VARCHAR',
 				'constraint' => 255,
 				'null' => TRUE,
 			)
 		);
 		$this->dbforge->add_field($fields);
-		$this->dbforge->add_key('troupe_id', TRUE);
+		$this->dbforge->add_key('record_id', TRUE);
 		$this->dbforge->create_table('troupes', TRUE);
+
+		/* theaters table */
+		$fields = array(
+			'record_id' => array(
+				'type' => 'INT',
+				'constraint' => 8,
+				'auto_increment' => TRUE
+			),
+			'name' => array(
+				'type' => 'VARCHAR',
+				'constraint' => 255,
+				'null' => TRUE,
+			)
+		);
+		$this->dbforge->add_field($fields);
+		$this->dbforge->add_key('record_id', TRUE);
+		$this->dbforge->create_table('theaters', TRUE);
+
+		/* performances table */
+		$fields = array(
+			'record_id' => array(
+				'type' => 'INT',
+				'constraint' => 8,
+				'auto_increment' => TRUE
+			),
+			'name' => array(
+				'type' => 'VARCHAR',
+				'constraint' => 255,
+				'null' => TRUE,
+			)
+		);
+		$this->dbforge->add_field($fields);
+		$this->dbforge->add_key('record_id', TRUE);
+		$this->dbforge->create_table('performances', TRUE);
 
 	}
 	

@@ -14,11 +14,11 @@
 			<div class="panel-body">
 				<div class="row">
 					<div class="col-lg-6">
-						<form role="form" method="post" action="/troupe/save/<?=$troupe['troupe_id']?>">
-
+						<form role="form" method="post" action="/troupe/save/<?=$this->uri->segment(3, NULL);?>">
+							<input type="hidden" name="record_id" value="<?=$this->uri->segment(3, NULL);?>" />
 							<div class="form-group">
 								<label>Όνομα θιάσου</label>
-								<input class="form-control" name="troupe_name" value="<?=$troupe['troupe_name']?>">
+								<input class="form-control" name="name" value="<?=set_value('name', $troupe['name']);?>">
 							</div>
 
 							<button type="submit" class="btn btn-default">αποθήκευση</button>

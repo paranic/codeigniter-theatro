@@ -2,32 +2,39 @@
 
 class Theater extends CI_Controller {
 
-	var $template_data;
+	var $template_data = array();
 	
 	function __construct() 
 	{
 		parent::__construct();
-		$this->template_data = array();
 		$this->template_data['active_menu'] = 'theater';
 	}
 	
 	public function index()
 	{
+		$this->load->model('theater_model');
+		
+		$this->template_data['theaters'] = $this->theater_model->get_all();
+		
 		$this->template->load('main', 'theater/theaters', $this->template_data);
 	}
 	
 	public function add()
 	{
-		$this->template_data['theater'] = array('theater_id'=>NULL, 'theater_name'=>NULL);
+		$this->load->library('form_validation');
+
+		$theater = array('name'=>'');
+		$this->template_data['theater'] = $theater;
 		
 		$this->template->load('main', 'theater/theater', $this->template_data);
 	}
 	
 	public function edit($theater_id)
 	{
-		$this->load->model('theater');
+		$this->load->library('form_validation');
+		$this->load->model('theater_model');
 		
-		$this->tempalte_data['theater'] = $this->troupe->get_troupe($troupe_id);
+		$this->template_data['theater'] = $this->theater_model->get($theater_id);
 		
 		$this->template->load('main', 'theater/theater', $this->template_data);
 	}
@@ -35,13 +42,31 @@ class Theater extends CI_Controller {
 	public function save($theater_id=NULL)
 	{
 		$this->load->library('form_validation');
-		$this->load->model('theater');
+		$this->load->model('theater_model');
 		
 		if ($this->input->post())
 		{
-			$this->form_validation->set_rules('theater_name', 'theater name', 'required');
+			$this->form_validation->set_rules('name', 'theater name', 'required');
+			
+			if ($this->form_validation->run() == FALSE)
+			{
+				$this->template_data['error_message'] = validation_errors('', '</br>');
+				
+				$this->template->load('main', 'theater/theater', $this->template_data);
+			}
+			else
+			{
+				$this->theater_model->save($this->input->post());
+				
+				$this->session->set_flashdata('message', 'Έγινε!');
+				
+				$this->load->helper('url');
+				redirect('theater', 'location');
+			}
 		}
 	}
+	
+	
 }
 
 /* End of file dashboard.php */

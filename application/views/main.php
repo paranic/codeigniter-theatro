@@ -14,9 +14,6 @@
     <!-- Bootstrap Core CSS -->
     <link href="/assets/css/bootstrap.min.css" rel="stylesheet">
 
-    <!-- MetisMenu CSS -->
-    <link href="/assets/css/plugins/metisMenu/metisMenu.min.css" rel="stylesheet">
-
     <!-- Custom CSS -->
     <link href="/assets/css/sb-admin-2.css" rel="stylesheet">
 
@@ -37,7 +34,7 @@
 
 <body>
 
-    <div id="wrapper">
+	<div id="wrapper">
 
         <!-- Navigation -->
         <nav class="navbar navbar-default navbar-static-top" role="navigation" style="margin-bottom: 0">
@@ -48,7 +45,7 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a class="navbar-brand" href="<index.html/>">≈ Theatrø ≈</a>
+                <a class="navbar-brand" href="/">≈ Theatrø ≈</a>
             </div>
             <!-- /.navbar-header -->
 
@@ -68,11 +65,12 @@
                         </li>
 
                         <li>
-                            <a <?if($this->uri->segment(1)=='troupe'){?>class="active"<?}?> href="/troupe"><i class="fa fa-users fa-fw"></i> Θίασοι</a>
+                            <a <?if($this->uri->segment(1)=='theater'){?>class="active"<?}?> href="/theater"><i class="fa fa-building fa-fw"></i> Θέατρα</a>
                         </li>
 
+
                         <li>
-                            <a <?if($this->uri->segment(1)=='theater'){?>class="active"<?}?> href="/theater"><i class="fa fa-building fa-fw"></i> Θέατρα</a>
+                            <a <?if($this->uri->segment(1)=='troupe'){?>class="active"<?}?> href="/troupe"><i class="fa fa-users fa-fw"></i> Θίασοι</a>
                         </li>
 
                         <li>
@@ -89,6 +87,18 @@
 
         <!-- Page Content -->
         <div id="page-wrapper">
+
+<?if($this->session->flashdata('message')){?>
+		<div class="alert alert-warning">
+<?=$this->session->flashdata('message')?>
+		</div>
+<?}?>
+
+<?if(isset($error_message)){?>
+		<div class="alert alert-danger">
+<?=$error_message?>
+		</div>
+<?}?>
 
 <?=$body?>
 

@@ -14,11 +14,26 @@
 			<div class="panel-body">
 				<div class="row">
 					<div class="col-lg-6">
-						<form role="form" method="post" action="/troupe/save/<?=$performance['performance_id']?>">
+						<form role="form" method="post" action="/performance/save/<?=$this->uri->segment(3, NULL);?>">
 
 							<div class="form-group">
-								<label>Όνομα παράστασης</label>
-								<input class="form-control" name="troupe_name" value="<?=$performance['performance_name']?>">
+								<label>Θέατρο</label>
+								<select class="form-control" name="theater">
+									<option>επιλέξτε θέατρο</option>
+<?foreach($theaters as $theater){?>
+									<option value="<?=$theater['record_id']?>"><?=$theater['name']?></option>
+<?}?>
+								</select>
+							</div>
+							
+							<div class="form-group">
+								<label>Θίασος</label>
+								<select class="form-control" name="troupe">
+									<option>επιλέξτε θίασο</option>
+<?foreach($troupes as $troupe){?>
+									<option value="<?=$troupe['record_id']?>"><?=$troupe['name']?></option>
+<?}?>
+								</select>
 							</div>
 
 							<button type="submit" class="btn btn-default">αποθήκευση</button>

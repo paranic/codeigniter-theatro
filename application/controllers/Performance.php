@@ -18,6 +18,13 @@ class Performance extends CI_Controller {
 	
 	public function add()
 	{
+		$this->load->helper('form');
+		$this->load->model('troupe_model');
+		$this->load->model('theater_model');
+		
+		$this->template_data['troupes'] = $this->troupe_model->get_all();
+		$this->template_data['theaters'] = $this->theater_model->get_all();
+		
 		$this->template_data['performance'] = array('performance_id'=>NULL, 'performance_name'=>NULL);
 		
 		$this->template->load('main', 'performance/performance', $this->template_data);
@@ -35,11 +42,26 @@ class Performance extends CI_Controller {
 	public function save($theater_id=NULL)
 	{
 		$this->load->library('form_validation');
-		$this->load->model('performance');
+		$this->load->model('performance_model');
 		
 		if ($this->input->post())
 		{
-			$this->form_validation->set_rules('performance_name', 'performance name', 'required');
+			$this->form_validation->set_rules('theater', 'theater', 'is_natural_no_zero');
+			$this->form_validation->set_rules('troupe', 'troupe', 'is_natural_no_zero');
+			
+			if ($this->form_validation->run() == FALSE)
+			{
+				$this->load->model('troupe_model');
+				$this->load->model('theater_model');
+				$this->template_data['troupes'] = $this->troupe_model->get_all();
+				$this->template_data['theaters'] = $this->theater_model->get_all();
+
+
+				$this->template_data['error_message'] = validation_errors('', '</br>');
+				
+				$this->template->load('main', 'performance/performance', $this->template_data);
+			}
+
 		}
 	}
 }
