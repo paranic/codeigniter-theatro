@@ -2,11 +2,11 @@
 /**
  * CodeIgniter
  *
- * An open source application development framework for PHP 5.2.4 or newer
+ * An open source application development framework for PHP
  *
  * This content is released under the MIT License (MIT)
  *
- * Copyright (c) 2014, British Columbia Institute of Technology
+ * Copyright (c) 2014 - 2015, British Columbia Institute of Technology
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -29,7 +29,7 @@
  * @package	CodeIgniter
  * @author	EllisLab Dev Team
  * @copyright	Copyright (c) 2008 - 2014, EllisLab, Inc. (http://ellislab.com/)
- * @copyright	Copyright (c) 2014, British Columbia Institute of Technology (http://bcit.ca/)
+ * @copyright	Copyright (c) 2014 - 2015, British Columbia Institute of Technology (http://bcit.ca/)
  * @license	http://opensource.org/licenses/MIT	MIT License
  * @link	http://codeigniter.com
  * @since	Version 1.0.0
@@ -187,7 +187,7 @@ class CI_Exceptions {
 
 	// --------------------------------------------------------------------
 
-	public function show_exception(Exception $exception)
+	public function show_exception($exception)
 	{
 		$templates_path = config_item('error_views_path');
 		if (empty($templates_path))
@@ -273,6 +273,3 @@ class CI_Exceptions {
 	}
 
 }
-
-/* End of file Exceptions.php */
-/* Location: ./system/core/Exceptions.php */

@@ -1,12 +1,11 @@
-<?php
-defined('BASEPATH') OR exit('No direct script access allowed');
+<?php defined('BASEPATH') OR exit('No direct script access allowed');
 
-class Migration_Initial_Scheme extends CI_Migration {
+class Migration_Initial extends CI_Migration {
 
 	public function up()
 	{
 		//$this->dbforge->create_database('theatro');
-		
+
 		/* users table */
 		$fields = array(
 			'user_id' => array(
@@ -38,10 +37,10 @@ class Migration_Initial_Scheme extends CI_Migration {
 		$this->dbforge->add_field($fields);
 		$this->dbforge->add_key('user_id', TRUE);
 		$this->dbforge->create_table('users', TRUE);
-		
+
 		// add default user so we can have a null database usable application
 		$this->db->insert('users', array('email'=>'default@user.com', 'password'=>'default'));
-		
+
 		/* troupes table */
 		$fields = array(
 			'record_id' => array(
@@ -92,11 +91,10 @@ class Migration_Initial_Scheme extends CI_Migration {
 		$this->dbforge->add_field($fields);
 		$this->dbforge->add_key('record_id', TRUE);
 		$this->dbforge->create_table('performances', TRUE);
-
 	}
-	
+
 	public function down()
 	{
-		$this->dbforge->drop_table('users');
 	}
+
 }

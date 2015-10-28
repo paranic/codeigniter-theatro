@@ -2,11 +2,11 @@
 /**
  * CodeIgniter
  *
- * An open source application development framework for PHP 5.2.4 or newer
+ * An open source application development framework for PHP
  *
  * This content is released under the MIT License (MIT)
  *
- * Copyright (c) 2014, British Columbia Institute of Technology
+ * Copyright (c) 2014 - 2015, British Columbia Institute of Technology
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -29,7 +29,7 @@
  * @package	CodeIgniter
  * @author	EllisLab Dev Team
  * @copyright	Copyright (c) 2008 - 2014, EllisLab, Inc. (http://ellislab.com/)
- * @copyright	Copyright (c) 2014, British Columbia Institute of Technology (http://bcit.ca/)
+ * @copyright	Copyright (c) 2014 - 2015, British Columbia Institute of Technology (http://bcit.ca/)
  * @license	http://opensource.org/licenses/MIT	MIT License
  * @link	http://codeigniter.com
  * @since	Version 1.0.0
@@ -122,15 +122,6 @@ abstract class CI_DB_driver {
 	 * @var	string
 	 */
 	public $dbcollat		= 'utf8_general_ci';
-
-	/**
-	 * Auto-init flag
-	 *
-	 * Whether to automatically initialize the DB connection.
-	 *
-	 * @var	bool
-	 */
-	public $autoinit		= TRUE;
 
 	/**
 	 * Encryption flag/data
@@ -381,7 +372,7 @@ abstract class CI_DB_driver {
 			}
 		}
 
-		log_message('debug', 'Database Driver Class Initialized');
+		log_message('info', 'Database Driver Class Initialized');
 	}
 
 	// --------------------------------------------------------------------
@@ -456,9 +447,23 @@ abstract class CI_DB_driver {
 	// --------------------------------------------------------------------
 
 	/**
+	 * DB connect
+	 *
+	 * This is just a dummy method that all drivers will override.
+	 *
+	 * @return	mixed
+	 */
+	public function db_connect()
+	{
+		return TRUE;
+	}
+
+	// --------------------------------------------------------------------
+
+	/**
 	 * Persistent database connection
 	 *
-	 * @return	resource
+	 * @return	mixed
 	 */
 	public function db_pconnect()
 	{
@@ -476,7 +481,7 @@ abstract class CI_DB_driver {
 	 * This is just a dummy method to allow drivers without such
 	 * functionality to not declare it, while others will override it.
 	 *
-	 * @return      void
+	 * @return	void
 	 */
 	public function reconnect()
 	{
@@ -490,7 +495,7 @@ abstract class CI_DB_driver {
 	 * This is just a dummy method to allow drivers without such
 	 * functionality to not declare it, while others will override it.
 	 *
-	 * @return      bool
+	 * @return	bool
 	 */
 	public function db_select()
 	{
@@ -642,7 +647,10 @@ abstract class CI_DB_driver {
 			}
 
 			// This will trigger a rollback if transactions are being used
-			$this->_trans_status = FALSE;
+			if ($this->_trans_depth !== 0)
+			{
+				$this->_trans_status = FALSE;
+			}
 
 			// Grab the error now, as we might run some additional queries before displaying the error
 			$error = $this->error();
@@ -783,10 +791,13 @@ abstract class CI_DB_driver {
 
 	/**
 	 * Enable/disable Transaction Strict Mode
+	 *
 	 * When strict mode is enabled, if you are running multiple groups of
-	 * transactions, if one group fails all groups will be rolled back.
-	 * If strict mode is disabled, each group is treated autonomously, meaning
-	 * a failure of one group will not affect any others
+	 * transactions, if one group fails all subsequent groups will be
+	 * rolled back.
+	 *
+	 * If strict mode is disabled, each group is treated autonomously,
+	 * meaning a failure of one group will not affect any others
 	 *
 	 * @param	bool	$mode = TRUE
 	 * @return	void
@@ -808,7 +819,7 @@ abstract class CI_DB_driver {
 	{
 		if ( ! $this->trans_enabled)
 		{
-			return FALSE;
+			return;
 		}
 
 		// When transactions are nested we only begin/commit/rollback the outermost ones
@@ -853,8 +864,8 @@ abstract class CI_DB_driver {
 			$this->trans_rollback();
 
 			// If we are NOT running in strict mode, we will reset
-			// the _trans_status flag so that subsequent groups of transactions
-			// will be permitted.
+			// the _trans_status flag so that subsequent groups of
+			// transactions will be permitted.
 			if ($this->trans_strict === FALSE)
 			{
 				$this->_trans_status = TRUE;
@@ -964,7 +975,7 @@ abstract class CI_DB_driver {
 	 * Calculate the aggregate query elapsed time
 	 *
 	 * @param	int	The number of decimal places
-	 * @return	int
+	 * @return	string
 	 */
 	public function elapsed_time($decimals = 6)
 	{
@@ -1034,7 +1045,7 @@ abstract class CI_DB_driver {
 	/**
 	 * Escape String
 	 *
-	 * @param	string	$str
+	 * @param	string|string[]	$str	Input string
 	 * @param	bool	$like	Whether or not the string will be used in a LIKE condition
 	 * @return	string
 	 */
@@ -1102,10 +1113,10 @@ abstract class CI_DB_driver {
 	 * Retrieves the primary key. It assumes that the row in the first
 	 * position is the primary key
 	 *
-	 * @param	string	the table name
+	 * @param	string	$table	Table name
 	 * @return	string
 	 */
-	public function primary($table = '')
+	public function primary($table)
 	{
 		$fields = $this->list_fields($table);
 		return is_array($fields) ? current($fields) : FALSE;
@@ -1213,20 +1224,15 @@ abstract class CI_DB_driver {
 	/**
 	 * Fetch Field Names
 	 *
-	 * @param	string	the table name
+	 * @param	string	$table	Table name
 	 * @return	array
 	 */
-	public function list_fields($table = '')
+	public function list_fields($table)
 	{
 		// Is there a cached result?
 		if (isset($this->data_cache['field_names'][$table]))
 		{
 			return $this->data_cache['field_names'][$table];
-		}
-
-		if ($table === '')
-		{
-			return ($this->db_debug) ? $this->display_error('db_field_param_missing') : FALSE;
 		}
 
 		if (FALSE === ($sql = $this->_list_columns($table)))
@@ -1282,18 +1288,13 @@ abstract class CI_DB_driver {
 	/**
 	 * Returns an object with field data
 	 *
-	 * @param	string	the table name
-	 * @return	object
+	 * @param	string	$table	the table name
+	 * @return	array
 	 */
-	public function field_data($table = '')
+	public function field_data($table)
 	{
-		if ($table === '')
-		{
-			return ($this->db_debug) ? $this->display_error('db_field_param_missing') : FALSE;
-		}
-
 		$query = $this->query($this->_field_data($this->protect_identifiers($table, TRUE, NULL, FALSE)));
-		return $query->field_data();
+		return ($query) ? $query->field_data() : FALSE;
 	}
 
 	// --------------------------------------------------------------------
@@ -1461,7 +1462,7 @@ abstract class CI_DB_driver {
 	 */
 	protected function _has_operator($str)
 	{
-		return (bool) preg_match('/(<|>|!|=|\sIS\s|\sEXISTS|\sBETWEEN|\sLIKE|\sIN\s*\(|\s)/i', trim($str));
+		return (bool) preg_match('/(<|>|!|=|\sIS NULL|\sIS NOT NULL|\sEXISTS|\sBETWEEN|\sLIKE|\sIN\s*\(|\s)/i', trim($str));
 	}
 
 	// --------------------------------------------------------------------
@@ -1482,17 +1483,18 @@ abstract class CI_DB_driver {
 				? '\s+'.preg_quote(trim(sprintf($this->_like_escape_str, $this->_like_escape_chr)), '/')
 				: '';
 			$_operators = array(
-				'\s*(?:<|>|!)?=\s*',		// =, <=, >=, !=
-				'\s*<>?\s*',			// <, <>
-				'\s*>\s*',			// >
-				'\s+IS(?:\sNOT)?(?:\sNULL)?',	// IS[ NOT] NULL
-				'\s+EXISTS\s*\([^\)]+\)',	// EXISTS(sql)
-				'\s+NOT EXISTS\s*\([^\)]+\)',	// NOT EXISTS(sql)
-				'\s+BETWEEN\s+\S+\s+AND\s+\S+',	// BETWEEN value AND value
-				'\s+IN\s*\([^\)]+\)',		// IN(list)
-				'\s+NOT IN\s*\([^\)]+\)',	// NOT IN (list)
-				'\s+LIKE\s+\S+'.$_les,		// LIKE 'expr'[ ESCAPE '%s']
-				'\s+NOT LIKE\s+\S+'.$_les	// NOT LIKE 'expr'[ ESCAPE '%s']
+				'\s*(?:<|>|!)?=\s*',             // =, <=, >=, !=
+				'\s*<>?\s*',                     // <, <>
+				'\s*>\s*',                       // >
+				'\s+IS NULL',                    // IS NULL
+				'\s+IS NOT NULL',                // IS NOT NULL
+				'\s+EXISTS\s*\([^\)]+\)',        // EXISTS(sql)
+				'\s+NOT EXISTS\s*\([^\)]+\)',    // NOT EXISTS(sql)
+				'\s+BETWEEN\s+',                 // BETWEEN value AND value
+				'\s+IN\s*\([^\)]+\)',            // IN(list)
+				'\s+NOT IN\s*\([^\)]+\)',        // NOT IN (list)
+				'\s+LIKE\s+\S.*('.$_les.')?',    // LIKE 'expr'[ ESCAPE '%s']
+				'\s+NOT LIKE\s+\S.*('.$_les.')?' // NOT LIKE 'expr'[ ESCAPE '%s']
 			);
 
 		}
@@ -1638,7 +1640,7 @@ abstract class CI_DB_driver {
 	/**
 	 * Close DB Connection
 	 *
-	 * This method would be overriden by most of the drivers.
+	 * This method would be overridden by most of the drivers.
 	 *
 	 * @return	void
 	 */
@@ -1755,13 +1757,13 @@ abstract class CI_DB_driver {
 		//
 		// Added exception for single quotes as well, we don't want to alter
 		// literal strings. -- Narf
-		if (strpos($item, '(') !== FALSE OR strpos($item, "'") !== FALSE)
+		if (strcspn($item, "()'") !== strlen($item))
 		{
 			return $item;
 		}
 
 		// Convert tabs or multiple spaces into single spaces
-		$item = preg_replace('/\s+/', ' ', $item);
+		$item = preg_replace('/\s+/', ' ', trim($item));
 
 		// If the item has an alias declaration we remove it and set it aside.
 		// Note: strripos() is used in order to support spaces in table names
@@ -1789,12 +1791,15 @@ abstract class CI_DB_driver {
 		// with an alias. While we're at it, we will escape the components
 		if (strpos($item, '.') !== FALSE)
 		{
-			$parts	= explode('.', $item);
+			$parts = explode('.', $item);
 
 			// Does the first segment of the exploded item match
 			// one of the aliases previously identified? If so,
 			// we have nothing more to do other than escape the item
-			if (in_array($parts[0], $this->qb_aliased_tables))
+			//
+			// NOTE: The ! empty() condition prevents this method
+			//       from breaking when QB isn't enabled.
+			if ( ! empty($this->qb_aliased_tables) && in_array($parts[0], $this->qb_aliased_tables))
 			{
 				if ($protect_identifiers === TRUE)
 				{
@@ -1901,6 +1906,3 @@ abstract class CI_DB_driver {
 	}
 
 }
-
-/* End of file DB_driver.php */
-/* Location: ./system/database/DB_driver.php */
