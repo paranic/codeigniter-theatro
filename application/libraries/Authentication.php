@@ -1,19 +1,19 @@
-<?php if ( ! defined('BASEPATH')) exit('No direct script access allowed'); 
+<?php defined('BASEPATH') OR exit('No direct script access allowed');
 
 class Authentication {
 
 	public function __construct()
 	{
 		$this->ci = &get_instance();
-		$this->ci->load->model('users_model');
+		$this->ci->load->model('user_model');
 	}
 
 	public function login($user_login_data)
 	{
-		if ($user = $this->ci->users_model->get_user_by_userpass($user_login_data))
+		if ($user = $this->ci->user_model->get_record(['email' => $user_login_data['username'], 'password' => $user_login_data['password']]));
 		{
 			$this->ci->session->set_userdata('logged_in', TRUE);
-			$this->ci->session->set_userdata('person', $user);
+			$this->ci->session->set_userdata('user', $user);
 			return TRUE;
 		}
 		return FALSE;

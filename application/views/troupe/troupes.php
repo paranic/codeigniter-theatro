@@ -27,10 +27,10 @@
 						<tbody>
 <?foreach($troupes as $troupe){?>
 							<tr>
-								<td><?=$troupe['record_id']?>
-								<td><?=$troupe['name']?>
+								<td><?=$troupe->record_id?>
+								<td><?=$troupe->name?>
 								<td>
-									<a href="/troupe/edit/<?=$troupe['record_id']?>"  class="btn btn-outline btn-primary btn-xs">edit</a>
+									<a href="/troupe/edit/<?=$troupe->record_id?>"  class="btn btn-outline btn-primary btn-xs">edit</a>
 									<a href="#" class="btn btn-outline btn-primary btn-xs">delete</a>
 								</td>
 							</tr>

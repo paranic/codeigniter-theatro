@@ -1,15 +1,16 @@
-<?php
+<?php defined('BASEPATH') OR exit('No direct script access allowed');
 
 class Theater_model extends MY_Model
 {
+	protected $table_name = 'theaters';
 
-	public $table_name = 'theaters';
-	
-	public function __construct()
+	public $name;
+
+	public function __construct($properties = [])
 	{
-		parent::__construct();
+		parent::__construct($properties);
 	}
-	
+
 }
 
 /* End of file Theater_model.php */

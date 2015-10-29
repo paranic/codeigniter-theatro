@@ -1,4 +1,4 @@
-<?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
+<?php defined('BASEPATH') OR exit('No direct script access allowed');
 
 class Login extends CI_Controller
 {
@@ -12,13 +12,11 @@ class Login extends CI_Controller
 
 		if ($this->input->post())
 		{
-
 			$this->form_validation->set_rules('username', 'Username', 'required');
 			$this->form_validation->set_rules('password', 'Password', 'required');
 
 			if ($this->form_validation->run() == true)
 			{
-				// if get person from model.
 				if ($this->authentication->login($this->input->post()))
 				{
 					redirect('dashboard', 'location');

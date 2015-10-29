@@ -27,10 +27,10 @@
 						<tbody>
 <?foreach($theaters as $theater){?>
 							<tr>
-								<td><?=$theater['record_id']?>
-								<td><?=$theater['name']?>
+								<td><?=$theater->record_id?>
+								<td><?=$theater->name?>
 								<td>
-									<a href="/theater/edit/<?=$theater['record_id']?>"  class="btn btn-outline btn-primary btn-xs">edit</a>
+									<a href="/theater/edit/<?=$theater->record_id?>"  class="btn btn-outline btn-primary btn-xs">edit</a>
 									<a href="#" class="btn btn-outline btn-primary btn-xs">delete</a>
 								</td>
 							</tr>

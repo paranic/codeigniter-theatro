@@ -4,33 +4,38 @@ class Migration_Initial extends CI_Migration {
 
 	public function up()
 	{
-		//$this->dbforge->create_database('theatro');
-
 		/* users table */
 		$fields = array(
-			'user_id' => array(
+			'record_id' => array(
 				'type' => 'INT',
-				'constraint' => 8,
 				'auto_increment' => TRUE
 			),
+			'insert_at' => array(
+				'type' => 'TEXT',
+				'null' => TRUE
+			),
+			'update_at' => array(
+				'type' => 'TEXT',
+				'null' => TRUE
+			),
+			'deleted_at' => array(
+				'type' => 'TEXT',
+				'null' => TRUE
+			),
 			'email' => array(
-				'type' => 'VARCHAR',
-				'constraint' => 255,
+				'type' => 'TEXT',
 				'null' => TRUE,
 			),
 			'password' => array(
-				'type' => 'VARCHAR',
-				'constraint' => 255,
+				'type' => 'TEXT',
 				'null' => TRUE
 			),
 			'firstname' => array(
-				'type' => 'VARCHAR',
-				'constraint' => 255,
+				'type' => 'TEXT',
 				'null' => TRUE
 			),
 			'lastname' => array(
-				'type' => 'VARCHAR',
-				'constraint' => 255,
+				'type' => 'TEXT',
 				'null' => TRUE
 			)
 		);
@@ -45,12 +50,22 @@ class Migration_Initial extends CI_Migration {
 		$fields = array(
 			'record_id' => array(
 				'type' => 'INT',
-				'constraint' => 8,
 				'auto_increment' => TRUE
 			),
+			'insert_at' => array(
+				'type' => 'TEXT',
+				'null' => TRUE
+			),
+			'update_at' => array(
+				'type' => 'TEXT',
+				'null' => TRUE
+			),
+			'deleted_at' => array(
+				'type' => 'TEXT',
+				'null' => TRUE
+			),
 			'name' => array(
-				'type' => 'VARCHAR',
-				'constraint' => 255,
+				'type' => 'TEXT',
 				'null' => TRUE,
 			)
 		);
@@ -62,12 +77,22 @@ class Migration_Initial extends CI_Migration {
 		$fields = array(
 			'record_id' => array(
 				'type' => 'INT',
-				'constraint' => 8,
 				'auto_increment' => TRUE
 			),
+			'insert_at' => array(
+				'type' => 'TEXT',
+				'null' => TRUE
+			),
+			'update_at' => array(
+				'type' => 'TEXT',
+				'null' => TRUE
+			),
+			'deleted_at' => array(
+				'type' => 'TEXT',
+				'null' => TRUE
+			),
 			'name' => array(
-				'type' => 'VARCHAR',
-				'constraint' => 255,
+				'type' => 'TEXT',
 				'null' => TRUE,
 			)
 		);
@@ -79,12 +104,22 @@ class Migration_Initial extends CI_Migration {
 		$fields = array(
 			'record_id' => array(
 				'type' => 'INT',
-				'constraint' => 8,
 				'auto_increment' => TRUE
 			),
+			'insert_at' => array(
+				'type' => 'TEXT',
+				'null' => TRUE
+			),
+			'update_at' => array(
+				'type' => 'TEXT',
+				'null' => TRUE
+			),
+			'deleted_at' => array(
+				'type' => 'TEXT',
+				'null' => TRUE
+			),
 			'name' => array(
-				'type' => 'VARCHAR',
-				'constraint' => 255,
+				'type' => 'TEXT',
 				'null' => TRUE,
 			)
 		);

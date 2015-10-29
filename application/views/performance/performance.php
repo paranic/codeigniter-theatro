@@ -10,7 +10,7 @@
 			<div class="panel-heading">
 				Προσθήκη νέας παράστασης
 			</div>
-			
+
 			<div class="panel-body">
 				<div class="row">
 					<div class="col-lg-6">
@@ -21,17 +21,17 @@
 								<select class="form-control" name="theater">
 									<option>επιλέξτε θέατρο</option>
 <?foreach($theaters as $theater){?>
-									<option value="<?=$theater['record_id']?>"><?=$theater['name']?></option>
+									<option value="<?=$theater->record_id?>"><?=$theater->name?></option>
 <?}?>
 								</select>
 							</div>
-							
+
 							<div class="form-group">
 								<label>Θίασος</label>
 								<select class="form-control" name="troupe">
 									<option>επιλέξτε θίασο</option>
 <?foreach($troupes as $troupe){?>
-									<option value="<?=$troupe['record_id']?>"><?=$troupe['name']?></option>
+									<option value="<?=$troupe->record_id?>"><?=$troupe->name?></option>
 <?}?>
 								</select>
 							</div>

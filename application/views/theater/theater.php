@@ -18,7 +18,7 @@
 							<input type="hidden" name="record_id" value="<?=$this->uri->segment(3, NULL);?>" />
 							<div class="form-group">
 								<label>Όνομα Θεάτρου</label>
-								<input class="form-control" name="name" value="<?=set_value('name', $theater['name']);?>">
+								<input class="form-control" name="name" value="<?=set_value('name', $theater->name);?>">
 							</div>
 							<button type="submit" class="btn btn-default">αποθήκευση</button>
 						</form>

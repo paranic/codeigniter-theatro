@@ -1,74 +1,165 @@
-<?php
-
-defined('BASEPATH') OR exit('No direct script access allowed');
+<?php defined('BASEPATH') OR exit('No direct script access allowed');
 
 class MY_Model extends CI_Model {
 
-	public $table_name;
-	
-	
-	public function __construct()
+	protected $table_name = 'undefined';
+
+	public $record_id;
+	public $insert_at;
+	public $update_at;
+	public $deleted_at;
+
+	public function __construct($properties = [])
 	{
 		parent::__construct();
+		$this->set_properties($properties);
 	}
-	
-	
-	public function save($record)
+
+	public function set_properties($properties = [])
 	{
-		if (isset($record['record_id']) AND is_numeric($record['record_id']))
+		foreach ($properties as $property => $value)
 		{
-			$this->update($record);
+			$this->$property = $value;
+		}
+	}
+
+	private function nullify_empty_properties()
+	{
+		foreach (get_object_vars($this) as $property => $value)
+		{
+			if (strlen(trim($this->$property)) == 0)
+			{
+				$this->$property = NULL;
+			}
+		}
+	}
+
+	public function get_record($where = [])
+	{
+		if (!$where) return NULL;
+
+		$called_class = get_called_class();
+
+		return $this->db->get_where($this->table_name, $where)->custom_row_object(0, $called_class);
+	}
+
+	public function get_records($where = [])
+	{
+		$called_class = get_called_class();
+		$where = array_merge($where, ['deleted_at' => NULL]);
+
+		return $this->db->get_where($this->table_name, $where)->custom_result_object($called_class);
+	}
+
+	public function get_deleted_records($where = [])
+	{
+		$called_class = get_called_class();
+		$where = array_merge($where, ['deleted_at IS NOT' => NULL]);
+
+		return $this->db->get_where($this->table_name, $where)->custom_result_object($called_class);
+	}
+
+	public function save()
+	{
+		if ((int)$this->record_id > 0)
+		{
+			$this->update();
 		}
 		else
 		{
-			$this->insert($record);
+			$this->insert();
 		}
 	}
-	
-	
-	public function insert($record)
+
+	public function save_and_get_record_id()
 	{
-		return $this->db->insert($this->table_name, $record);
+		if ((int)$this->record_id > 0)
+		{
+			$this->update();
+			$result = $this->record_id;
+		}
+		else
+		{
+			$this->insert();
+			$result = $this->db->insert_id();
+		}
+		return $result;
 	}
-	
-	
-	public function update($record)
+
+	public function update()
 	{
-		return $this->db->update($this->table_name, $record, array('record_id'=>$record['record_id']));
+		$this->nullify_empty_properties();
+
+		$called_class = get_called_class();
+
+		$datetime_now = new DateTime('now', new DateTimeZone('UTC'));
+		$this->update_at = $datetime_now->format('Y-m-d H:i:s');
+
+		$this->db->update($this->table_name, $this, ['record_id' => $this->record_id]);
 	}
-	
-	
-	public function delete($record)
+
+	public function insert()
 	{
-		return $this->db->delete($this->table_name, array('record_id'=>$record['record_id']));
+		$this->nullify_empty_properties();
+
+		$called_class = get_called_class();
+
+		$datetime_now = new DateTime('now', new DateTimeZone('UTC'));
+		$this->insert_at = $datetime_now->format('Y-m-d H:i:s');
+		$this->update_at = $datetime_now->format('Y-m-d H:i:s');
+
+		$this->db->insert($this->table_name, $this);
+
+		$this->record_id = $this->db->insert_id();
 	}
-	
-	
-	public function soft_delete($record)
+
+	public function delete()
 	{
-		$record['deleted_at'] = date('Y-m-d H:i:s');
-		$this->db->update($this->table_name, $record, array('record_id'=>$record['record_id']));
+		$called_class = get_called_class();
+
+		return $this->db->delete($this->table_name, ['record_id' => $this->record_id]);
 	}
-	
-	
-	public function un_delete($record)
+
+	public function soft_delete()
 	{
-		$record['deleted_at'] = NULL;
-		$this->db->update($this->table_name, $record, array('record_id'=>$record['record_id']));
+		$called_class = get_called_class();
+		$datetime_now = new DateTime('now', new DateTimeZone('UTC'));
+		$this->deleted_at = $datetime_now->format('Y-m-d H:i:s');
+
+		$this->db->update($this->table_name, $this, ['record_id' => $this->record_id]);
 	}
-	
-	
-	public function get_all()
+
+	public function un_delete()
 	{
-		return $this->db->get($this->table_name)->result_array();
+		$called_class = get_called_class();
+		$this->deleted_at = NULL;
+
+		$this->db->update($this->table_name, $this, ['record_id' => $this->record_id]);
 	}
-	
-	
-	public function get($record_id)
+
+	public function is_unique($properties = [])
 	{
-		$result = $this->db->get_where($this->table_name, array('record_id'=>$record_id))->result_array();
-		if (count($result) == 1) return $result[0];
-		return NULL;
+		if (empty($properties)) return FALSE;
+
+		$where = [];
+		foreach ($properties as $property)
+		{
+			$where[$property] = $this->$property;
+		}
+
+		return !(bool)$this->db->get_where($this->table_name, $where)->num_rows();
+	}
+
+	public function is_empty($properties = [])
+	{
+		if (empty($properties)) return TRUE;
+
+		foreach ($properties as $property)
+		{
+			if (!empty($this->$property)) return FALSE;
+		}
+
+		return TRUE;
 	}
 
 }
