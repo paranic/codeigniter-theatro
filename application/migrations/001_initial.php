@@ -145,7 +145,15 @@ class Migration_Initial extends CI_Migration {
 				'type' => 'TEXT',
 				'null' => TRUE
 			),
-			'name' => array(
+			'theater_record_id' => array(
+				'type' => 'INT',
+				'null' => TRUE,
+			),
+			'troupe_record_id' => array(
+				'type' => 'INT',
+				'null' => TRUE,
+			),
+			'datetime' => array(
 				'type' => 'TEXT',
 				'null' => TRUE,
 			)

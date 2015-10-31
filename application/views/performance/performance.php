@@ -18,22 +18,32 @@
 
 							<div class="form-group">
 								<label>Θέατρο</label>
-								<select class="form-control" name="theater">
+								<select class="form-control" name="theater_record_id">
 									<option>επιλέξτε θέατρο</option>
 <?foreach($theaters as $theater){?>
-									<option value="<?=$theater->record_id?>"><?=$theater->name?></option>
+									<option value="<?=$theater->record_id?>" <?=set_select('theater_record_id', $theater->record_id, ($theater->record_id==$performance->theater_record_id))?>><?=$theater->name?></option>
 <?}?>
 								</select>
 							</div>
 
 							<div class="form-group">
 								<label>Θίασος</label>
-								<select class="form-control" name="troupe">
-									<option>επιλέξτε θίασο</option>
+								<select class="form-control" name="troupe_record_id">
+									<option value="" <?=set_select('troupe_record_id', $performance->troupe_record_id)?>>επιλέξτε θίασο</option>
 <?foreach($troupes as $troupe){?>
-									<option value="<?=$troupe->record_id?>"><?=$troupe->name?></option>
+									<option value="<?=$troupe->record_id?>" <?=set_select('troupe_record_id', $troupe->record_id, ($troupe->record_id==$performance->troupe_record_id))?>><?=$troupe->name?></option>
 <?}?>
 								</select>
+							</div>
+
+							<div class="form-group">
+								<label>Ημερομηνία</label>
+								<div class='input-group date' id='datetimepicker'>
+									<input type='text' class="form-control" name="datetime" value="<?=set_value('datetime', $performance->datetime);?>"/>
+									<span class="input-group-addon">
+										<span class="glyphicon glyphicon-calendar"></span>
+									</span>
+								</div>
 							</div>
 
 							<button type="submit" class="btn btn-default">αποθήκευση</button>
@@ -44,3 +54,12 @@
 		</div>
 	</div>
 </div>
+
+<script type="text/javascript">
+window.onload = function ()
+{
+	$('#datetimepicker').datetimepicker({
+		format: 'YYYY-MM-DD HH:mm:ss'
+	});
+};
+</script>
