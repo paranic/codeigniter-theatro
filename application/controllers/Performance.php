@@ -40,14 +40,9 @@ class Performance extends CI_Controller {
 	public function edit($record_id = NULL)
 	{
 		$this->load->helper('form');
-		//$this->load->library('form_validation');
 		$this->load->model('troupe_model');
 		$this->load->model('theater_model');
 		$this->load->model('performance_model');
-
-		//$this->form_validation->set_rules('theater_record_id', 'theater', 'required|is_natural_no_zero');
-		//$this->form_validation->set_rules('troupe_record_id', 'troupe', 'required|is_natural_no_zero');
-		//$this->form_validation->set_rules('datetime', 'datetime', 'required');
 
 		$this->template_data['troupes'] = $this->troupe_model->get_records();
 		$this->template_data['theaters'] = $this->theater_model->get_records();

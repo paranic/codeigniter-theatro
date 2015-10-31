@@ -4,7 +4,7 @@ class Migration_Initial extends CI_Migration {
 
 	public function up()
 	{
-		/* users table */
+		/* users */
 		$fields = array(
 			'record_id' => array(
 				'type' => 'INT',
@@ -43,10 +43,10 @@ class Migration_Initial extends CI_Migration {
 		$this->dbforge->add_key('user_id', TRUE);
 		$this->dbforge->create_table('users', TRUE);
 
-		// add default user so we can have a null database usable application
+		// add default user so we can initialy have a usable application
 		$this->db->insert('users', array('email'=>'default@user.com', 'password'=>'default'));
 
-		/* troupes table */
+		/* troupes */
 		$fields = array(
 			'record_id' => array(
 				'type' => 'INT',
@@ -73,7 +73,7 @@ class Migration_Initial extends CI_Migration {
 		$this->dbforge->add_key('record_id', TRUE);
 		$this->dbforge->create_table('troupes', TRUE);
 
-		/* theaters table */
+		/* theaters */
 		$fields = array(
 			'record_id' => array(
 				'type' => 'INT',
@@ -100,7 +100,7 @@ class Migration_Initial extends CI_Migration {
 		$this->dbforge->add_key('record_id', TRUE);
 		$this->dbforge->create_table('theaters', TRUE);
 
-		/* tickets table */
+		/* tickets */
 		$fields = array(
 			'record_id' => array(
 				'type' => 'INT',
@@ -127,7 +127,7 @@ class Migration_Initial extends CI_Migration {
 		$this->dbforge->add_key('record_id', TRUE);
 		$this->dbforge->create_table('tickets', TRUE);
 
-		/* performances table */
+		/* performances */
 		$fields = array(
 			'record_id' => array(
 				'type' => 'INT',
@@ -154,6 +154,10 @@ class Migration_Initial extends CI_Migration {
 				'null' => TRUE,
 			),
 			'datetime' => array(
+				'type' => 'TEXT',
+				'null' => TRUE,
+			),
+			'ticket_sales' => array(
 				'type' => 'TEXT',
 				'null' => TRUE,
 			)
