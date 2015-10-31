@@ -19,10 +19,10 @@
 
     <!-- Custom Fonts -->
     <link href="/assets/font-awesome-4.1.0/css/font-awesome.min.css" rel="stylesheet" type="text/css">
-    
+
     <!-- Main Font -->
     <link href='http://fonts.googleapis.com/css?family=Ubuntu&subset=latin,greek' rel='stylesheet' type='text/css'>
-    
+
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
     <!--[if lt IE 9]>
@@ -68,6 +68,9 @@
                             <a <?if($this->uri->segment(1)=='theater'){?>class="active"<?}?> href="/theater"><i class="fa fa-building fa-fw"></i> Θέατρα</a>
                         </li>
 
+						<li>
+                            <a <?if($this->uri->segment(1)=='tickets'){?>class="active"<?}?> href="/ticket"><i class="fa fa-ticket fa-fw"></i> Εισιτήρια</a>
+                        </li>
 
                         <li>
                             <a <?if($this->uri->segment(1)=='troupe'){?>class="active"<?}?> href="/troupe"><i class="fa fa-users fa-fw"></i> Θίασοι</a>

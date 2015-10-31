@@ -100,6 +100,33 @@ class Migration_Initial extends CI_Migration {
 		$this->dbforge->add_key('record_id', TRUE);
 		$this->dbforge->create_table('theaters', TRUE);
 
+		/* tickets table */
+		$fields = array(
+			'record_id' => array(
+				'type' => 'INT',
+				'auto_increment' => TRUE
+			),
+			'insert_at' => array(
+				'type' => 'TEXT',
+				'null' => TRUE
+			),
+			'update_at' => array(
+				'type' => 'TEXT',
+				'null' => TRUE
+			),
+			'deleted_at' => array(
+				'type' => 'TEXT',
+				'null' => TRUE
+			),
+			'name' => array(
+				'type' => 'TEXT',
+				'null' => TRUE,
+			)
+		);
+		$this->dbforge->add_field($fields);
+		$this->dbforge->add_key('record_id', TRUE);
+		$this->dbforge->create_table('tickets', TRUE);
+
 		/* performances table */
 		$fields = array(
 			'record_id' => array(
