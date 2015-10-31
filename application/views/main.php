@@ -54,7 +54,7 @@
 
             <ul class="nav navbar-top-links navbar-right">
                 <li class="dropdown">
-	                <a href="/logout"><i class="fa fa-sign-out fa-fw"></i></a>
+	                <a href="/logout">αποσύνδεση <i class="fa fa-sign-out fa-fw"></i></a>
                 </li>
             </ul>
             <!-- /.navbar-top-links -->
@@ -68,7 +68,7 @@
                         </li>
 
                         <li>
-                            <a <?if($this->uri->segment(1)=='theater'){?>class="active"<?}?> href="/theater"><i class="fa fa-building fa-fw"></i> Θέατρα</a>
+                            <a <?if($this->uri->segment(1)=='theater'){?>class="active"<?}?> href="/theater"><i class="fa fa-university fa-fw"></i> Θέατρα</a>
                         </li>
 
 						<li>
@@ -128,7 +128,7 @@
 
 	<!-- datetimepicker -->
 	<script src="/assets/bootstrap-datetimepicker-4.17.37/build/js/bootstrap-datetimepicker.min.js"></script>
-	
+
     <!-- Custom Theme JavaScript -->
     <script src="/assets/js/sb-admin-2.js"></script>
 
