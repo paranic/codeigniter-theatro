@@ -12,7 +12,10 @@
     <title>≈ Theatrø ≈</title>
 
     <!-- Bootstrap Core CSS -->
-    <link href="/assets/css/bootstrap.min.css" rel="stylesheet">
+    <link href="/assets/bootstrap-3.3.5-dist/css/bootstrap.min.css" rel="stylesheet">
+
+	<!-- datetimepicker -->
+	<link href="/assets/bootstrap-datetimepicker-4.17.37/build/css/bootstrap-datetimepicker.min.css" rel="stylesheet">
 
     <!-- Custom CSS -->
     <link href="/assets/css/sb-admin-2.css" rel="stylesheet">
@@ -112,14 +115,20 @@
     <!-- /#wrapper -->
 
     <!-- jQuery -->
-    <script src="/assets/js/jquery.js"></script>
+    <script src="/assets/jquery-2.1.4.min.js"></script>
 
     <!-- Bootstrap Core JavaScript -->
-    <script src="/assets/js/bootstrap.min.js"></script>
+    <script src="/assets/bootstrap-3.3.5-dist/js/bootstrap.min.js"></script>
 
     <!-- Metis Menu Plugin JavaScript -->
     <script src="/assets/js/plugins/metisMenu/metisMenu.min.js"></script>
 
+	<!-- Moment.js -->
+	<script src="/assets/moment.js"></script>
+
+	<!-- datetimepicker -->
+	<script src="/assets/bootstrap-datetimepicker-4.17.37/build/js/bootstrap-datetimepicker.min.js"></script>
+	
     <!-- Custom Theme JavaScript -->
     <script src="/assets/js/sb-admin-2.js"></script>
 

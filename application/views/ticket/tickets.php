@@ -1,11 +1,11 @@
 <div class="row">
-	<div class="col-lg-12">
+	<div class="col-xs-12">
 		<h1 class="page-header">Εισιτήρια</h1>
 	</div>
 </div>
 
 <div class="row">
-	<div class="col-lg-12">
+	<div class="col-xs-12">
 		<div class="panel panel-default">
 			<div class="panel-heading">
 				Τύποι Εισιτήριων
@@ -19,9 +19,9 @@
 					<table class="table">
 						<thead>
 							<tr>
-								<th class="col-md-2">#</th>
-								<th class="col-md-8">Τύπος Εισιτηρίου</th>
-								<th class="col-md-2">ενέργεια</th>
+								<th class="col-xs-1">#</th>
+								<th class="col-xs-9">Τύπος Εισιτηρίου</th>
+								<th class="col-xs-2">ενέργεια</th>
 							</tr>
 						</thead>
 						<tbody>
@@ -30,8 +30,7 @@
 								<td><?=$ticket->record_id?>
 								<td><?=$ticket->name?>
 								<td>
-									<a href="/ticket/edit/<?=$ticket->record_id?>"  class="btn btn-outline btn-primary btn-xs">edit</a>
-									<!-- <a href="#" class="btn btn-outline btn-primary btn-xs">delete</a> -->
+									<a href="/ticket/edit/<?=$ticket->record_id?>"  class="btn btn-outline btn-primary btn-xs">επεξεργασία</a>
 								</td>
 							</tr>
 <?}?>
