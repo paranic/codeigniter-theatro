@@ -8,5 +8,9 @@ application/logs/*
 !application/logs/index.html
 !application/logs/.htaccess
 
+application/databases/*
+!application/databases/index.html
+!application/databases/.htaccess
+
 /vendor/
 /nbproject/
