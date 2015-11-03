@@ -22,8 +22,9 @@
 								<th class="col-xs-1">#</th>
 								<th class="col-xs-3">Θέατρο</th>
 								<th class="col-xs-3">Παράσταση</th>
-								<th class="col-xs-3">Ημερομηνία</th>
-								<th class="col-xs-2">ενέργεια</th>
+								<th class="col-xs-2">Ημερομηνία</th>
+								<th class="col-xs-1">Πωλήσεις</th>
+								<th class="col-xs-4">ενέργεια</th>
 							</tr>
 						</thead>
 						<tbody>
@@ -33,8 +34,10 @@
 								<td><?=$performance->theater()->name?></td>
 								<td><?=$performance->troupe()->name?></td>
 								<td><?=$performance->datetime?></td>
+								<td>0</td>
 								<td>
-									<a href="/performance/edit/<?=$performance->record_id?>"  class="btn btn-outline btn-primary btn-xs">επεξεργασία</a>
+									<a href="/performance/edit/<?=$performance->record_id?>" class="btn btn-outline btn-primary btn-xs">επεξεργασία</a>
+									<a href="/sales/edit/<?=$performance->record_id?>" class="btn btn-outline btn-primary btn-xs">πωλήσεις</a>
 								</td>
 							</tr>
 <?}?>

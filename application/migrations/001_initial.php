@@ -156,15 +156,46 @@ class Migration_Initial extends CI_Migration {
 			'datetime' => array(
 				'type' => 'TEXT',
 				'null' => TRUE,
-			),
-			'ticket_sales' => array(
-				'type' => 'TEXT',
-				'null' => TRUE,
 			)
 		);
 		$this->dbforge->add_field($fields);
 		$this->dbforge->add_key('record_id', TRUE);
 		$this->dbforge->create_table('performances', TRUE);
+
+		/* sales */
+		$fields = array(
+			'record_id' => array(
+				'type' => 'INT',
+				'auto_increment' => TRUE
+			),
+			'insert_at' => array(
+				'type' => 'TEXT',
+				'null' => TRUE
+			),
+			'update_at' => array(
+				'type' => 'TEXT',
+				'null' => TRUE
+			),
+			'deleted_at' => array(
+				'type' => 'TEXT',
+				'null' => TRUE
+			),
+			'performance_record_id' => array(
+				'type' => 'INT',
+				'null' => TRUE,
+			),
+			'ticket_record_id' => array(
+				'type' => 'INT',
+				'null' => TRUE,
+			),
+			'sales' => array(
+				'type' => 'INT',
+				'null' => TRUE,
+			),
+		);
+		$this->dbforge->add_field($fields);
+		$this->dbforge->add_key('record_id', TRUE);
+		$this->dbforge->create_table('sales', TRUE);
 	}
 
 	public function down()
