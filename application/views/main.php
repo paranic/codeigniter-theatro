@@ -39,9 +39,9 @@
 
 	<div id="wrapper">
 
-        <!-- Navigation -->
         <nav class="navbar navbar-default navbar-static-top" role="navigation" style="margin-bottom: 0">
-            <div class="navbar-header">
+
+			<div class="navbar-header">
                 <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
                     <span class="sr-only">Toggle navigation</span>
                     <span class="icon-bar"></span>
@@ -50,14 +50,13 @@
                 </button>
                 <a class="navbar-brand" href="/">≈ Theatrø ≈</a>
             </div>
-            <!-- /.navbar-header -->
 
             <ul class="nav navbar-top-links navbar-right">
                 <li class="dropdown">
 	                <a href="/logout">αποσύνδεση <i class="fa fa-sign-out fa-fw"></i></a>
                 </li>
             </ul>
-            <!-- /.navbar-top-links -->
+
 
             <div class="navbar-default sidebar" role="navigation">
                 <div class="sidebar-nav navbar-collapse">
@@ -86,33 +85,30 @@
 
                     </ul>
                 </div>
-                <!-- /.sidebar-collapse -->
             </div>
-            <!-- /.navbar-static-side -->
+
         </nav>
 
         <!-- Page Content -->
         <div id="page-wrapper">
 
 <?if($this->session->flashdata('message')){?>
-		<div class="alert alert-warning">
+			<div class="alert alert-warning">
 <?=$this->session->flashdata('message')?>
-		</div>
+			</div>
 <?}?>
 
 <?if(isset($error_message)){?>
-		<div class="alert alert-danger">
+			<div class="alert alert-danger">
 <?=$error_message?>
-		</div>
+			</div>
 <?}?>
 
 <?=$body?>
 
         </div>
-        <!-- /#page-wrapper -->
 
     </div>
-    <!-- /#wrapper -->
 
     <!-- jQuery -->
     <script src="/assets/jquery-2.1.4.min.js"></script>

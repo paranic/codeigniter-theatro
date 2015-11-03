@@ -16,5 +16,5 @@ class User_model extends MY_Model
 
 }
 
-/* End of file user_model.php */
-/* Location: ./application/models/user_model.php */
+/* End of file User_model.php */
+/* Location: ./application/models/User_model.php */

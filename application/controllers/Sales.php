@@ -46,48 +46,22 @@ class Sales extends CI_Controller {
 
 	public function save($performance_record_id = NULL)
 	{
-		$this->load->library('form_validation');
-
 		if ($this->input->post())
 		{
-			var_dump($this->input->post('sales'));
-			die();
+			$this->load->model('sale_model');
+			foreach ($this->input->post('sales') as $post_sale)
+			{
+				$sale = new sale_model($post_sale);
+				$sale->save();
+			}
 
-// 			if ($this->form_validation->run() == FALSE)
-// 			{
-// 				$this->load->model('theater_model');
-// 				$this->load->model('troupe_model');
-// 				$this->template_data['theaters'] = $this->theater_model->get_records();
-// 				$this->template_data['troupes'] = $this->troupe_model->get_records();
+			$this->session->set_flashdata('message', 'Έγινε!');
 
-// 				$this->template_data['performance'] = new performance_model([
-// 					'record_id' => $record_id,
-// 					'theater_record_id' => $this->input->post('theater_record_id'),
-// 					'troupe_record_id' => $this->input->post('troupe_record_id')
-// 				]);
-
-// 				$this->template_data['error_message'] = validation_errors('', '</br>');
-
-// 				$this->template->load('main', 'performance/performance', $this->template_data);
-// 			}
-// 			else
-// 			{
-// 				$performance = new performance_model([
-// 					'record_id' => $record_id,
-// 					'theater_record_id' => $this->input->post('theater_record_id'),
-// 					'troupe_record_id' => $this->input->post('troupe_record_id'),
-// 					'datetime' => $this->input->post('datetime')
-// 				]);
-// 				$performance->save();
-
-// 				$this->session->set_flashdata('message', 'Έγινε!');
-
-// 				$this->load->helper('url');
-// 				redirect('performance', 'location');
-// 			}
-
+			$this->load->helper('url');
+			redirect('performance', 'location');
 		}
 	}
+
 }
 
 /* End of file Sales.php */

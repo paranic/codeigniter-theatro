@@ -7,13 +7,14 @@
 <div class="row">
 	<div class="col-xs-12">
 		<div class="panel panel-default">
+
 			<div class="panel-heading">
 				Θέατρα
 				<div class="pull-right">
 					<a href="/theater/add" class="btn btn-outline btn-primary btn-xs">προσθήκη νέου</a>
 				</div>
 			</div>
-			<!-- /.panel-heading -->
+
 			<div class="panel-body">
 				<div class="table-responsive">
 					<table class="table">
@@ -37,11 +38,8 @@
 						</tbody>
 					</table>
 				</div>
-				<!-- /.table-responsive -->
 			</div>
-			<!-- /.panel-body -->
+
 		</div>
-		<!-- /.panel -->
 	</div>
-	<!-- /.col-lg-6 -->
 </div>

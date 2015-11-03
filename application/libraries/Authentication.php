@@ -26,5 +26,5 @@ class Authentication {
 
 }
 
-/* End of file authentication.php */
-/* Location: ./application/libraries/authentication.php */
+/* End of file Authentication.php */
+/* Location: ./application/libraries/Authentication.php */

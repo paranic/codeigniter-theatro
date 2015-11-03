@@ -67,7 +67,6 @@ class Ticket extends CI_Controller {
 		}
 	}
 
-
 }
 
 /* End of file Ticket.php */

@@ -67,7 +67,6 @@ class Theater extends CI_Controller {
 		}
 	}
 
-
 }
 
 /* End of file Theater.php */

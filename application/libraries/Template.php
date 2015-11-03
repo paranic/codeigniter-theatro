@@ -1,21 +1,21 @@
-<?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
+<?php defined('BASEPATH') OR exit('No direct script access allowed');
 
 class Template {
 
 	var $ci;
 
-	function __construct() 
+	function __construct()
 	{
 		$this->ci =& get_instance();
 	}
-	
-	function load($tpl_view, $body_view = null, $data = null) 
+
+	function load($tpl_view, $body_view = NULL, $data = NULL)
 	{
-		if ( ! is_null( $body_view ) ) 
+		if ( ! is_null( $body_view ) )
 		{
 			$body = $this->ci->load->view($body_view, $data, TRUE);
-			
-			if ( is_null($data) ) 
+
+			if ( is_null($data) )
 			{
 				$data = array('body' => $body);
 			}
@@ -34,5 +34,5 @@ class Template {
 }
 
 
-/* End of file template.php */
-/* Location: ./application/libraries/template.php */
+/* End of file Template.php */
+/* Location: ./application/libraries/Template.php */

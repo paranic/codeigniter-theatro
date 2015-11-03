@@ -10,6 +10,7 @@ class Performance_model extends MY_Model
 
 	private $theater;
 	private $troupe;
+	private $total_sales_count;
 
 	public function __construct($properties = [])
 	{
@@ -33,6 +34,22 @@ class Performance_model extends MY_Model
 
 		return $this->troupe_model->get_record(['record_id' => $this->troupe_record_id]);
 	}
+
+	public function total_sales_count()
+	{
+		if ($this->total_sales_count) return $this->total_sales_count;
+
+		$this->load->model('sale_model');
+
+		$sales = $this->sale_model->get_records(['performance_record_id' => $this->record_id]);
+		foreach ($sales as $sale)
+		{
+			$this->total_sales_count += $sale->sales;
+		}
+
+		return $this->total_sales_count;
+	}
+
 }
 
 /* End of file Performance_model.php */

@@ -97,6 +97,7 @@ class Performance extends CI_Controller {
 
 		}
 	}
+
 }
 
 /* End of file Performance.php */

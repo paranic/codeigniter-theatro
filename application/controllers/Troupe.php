@@ -67,6 +67,7 @@ class Troupe extends CI_Controller {
 			}
 		}
 	}
+
 }
 
 /* End of file Troupe.php */

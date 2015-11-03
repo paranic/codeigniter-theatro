@@ -1,7 +1,8 @@
-<?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
+<?php defined('BASEPATH') OR exit('No direct script access allowed');
 
 class Main extends CI_Controller
 {
+
 	public function index()
 	{
 		$this->load->helper('url');
@@ -20,12 +21,12 @@ class Main extends CI_Controller
 	{
 		$this->load->helper('url');
 		$this->load->library('authentication');
-		
+
 		$this->authentication->logout();
 		redirect('login', 'location');
 	}
 
 }
 
-/* End of file main.php */
-/* Location: ./application/controllers/main.php */
+/* End of file Main.php */
+/* Location: ./application/controllers/Main.php */
