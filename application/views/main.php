@@ -35,6 +35,18 @@
 
 </head>
 
+<!-- Hotjar Tracking Code for theatro.quake.gr -->
+<script>
+    (function(h,o,t,j,a,r){
+        h.hj=h.hj||function(){(h.hj.q=h.hj.q||[]).push(arguments)};
+        h._hjSettings={hjid:103591,hjsv:5};
+        a=o.getElementsByTagName('head')[0];
+        r=o.createElement('script');r.async=1;
+        r.src=t+h._hjSettings.hjid+j+h._hjSettings.hjsv;
+        a.appendChild(r);
+    })(window,document,'//static.hotjar.com/c/hotjar-','.js?sv=');
+</script>
+
 <body>
 
 	<div id="wrapper">
@@ -82,6 +94,9 @@
                             <a <?if($this->uri->segment(1)=='performance'){?>class="active"<?}?> href="/performance"><i class="fa fa-child fa-fw"></i> Παραστάσεις</a>
                         </li>
 
+						<li>
+                            <a <?if($this->uri->segment(1)=='statistics'){?>class="active"<?}?> href="/statistics"><i class="fa fa-bar-chart-o fa-fw"></i> Στατιστικά</a>
+                        </li>
 
                     </ul>
                 </div>

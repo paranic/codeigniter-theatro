@@ -11,6 +11,7 @@ class Performance_model extends MY_Model
 	private $theater;
 	private $troupe;
 	private $total_sales_count;
+	private $sales = [];
 
 	public function __construct($properties = [])
 	{
@@ -39,15 +40,39 @@ class Performance_model extends MY_Model
 	{
 		if ($this->total_sales_count) return $this->total_sales_count;
 
-		$this->load->model('sale_model');
-
-		$sales = $this->sale_model->get_records(['performance_record_id' => $this->record_id]);
-		foreach ($sales as $sale)
+		foreach ($this->sales() as $sale)
 		{
 			$this->total_sales_count += $sale->sales;
 		}
 
 		return $this->total_sales_count;
+	}
+
+	public function sales()
+	{
+		if ($this->sales) return $this->sales;
+
+		$this->load->model('ticket_model');
+		$this->load->model('sale_model');
+		foreach ($this->ticket_model->get_records() as $ticket)
+		{
+			$sale = $this->sale_model->get_record([
+				'performance_record_id' => $this->record_id,
+				'ticket_record_id' => $ticket->record_id
+			]);
+
+			if (!$sale)
+			{
+				$sale = new sale_model([
+					'performance_record_id' => $this->record_id,
+					'ticket_record_id' => $ticket->record_id
+				]);
+			}
+
+			array_push($this->sales, $sale);
+		}
+
+		return $this->sales;
 	}
 
 }
