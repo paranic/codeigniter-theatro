@@ -2,12 +2,10 @@
 
 class Statistics extends CI_Controller {
 
-	var $template_data;
-
 	function __construct()
 	{
 		parent::__construct();
-		$this->template_data = array();
+		$this->template_data = [];
 		$this->template_data['active_menu'] = 'statistics';
 	}
 

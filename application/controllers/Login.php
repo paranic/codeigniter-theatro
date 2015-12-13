@@ -2,9 +2,10 @@
 
 class Login extends CI_Controller
 {
+
 	public function index()
 	{
-		$this->template_data = array();
+		$this->template_data = [];
 
 		$this->load->helper('url');
 		$this->load->library('authentication');
@@ -39,5 +40,5 @@ class Login extends CI_Controller
 
 }
 
-/* End of file login.php */
-/* Location: ./application/controllers/login.php */
+/* End of file Login.php */
+/* Location: ./application/controllers/Login.php */

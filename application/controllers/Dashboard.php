@@ -7,8 +7,7 @@ class Dashboard extends CI_Controller {
 	function __construct()
 	{
 		parent::__construct();
-		$this->template_data = array();
-		//$this->template_data['page'] = 'dashboard';
+		$this->template_data = [];
 	}
 
 	public function index()
@@ -18,5 +17,5 @@ class Dashboard extends CI_Controller {
 
 }
 
-/* End of file dashboard.php */
-/* Location: ./application/controllers/dashboard.php */
+/* End of file Dashboard.php */
+/* Location: ./application/controllers/Dashboard.php */

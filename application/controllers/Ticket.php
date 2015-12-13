@@ -2,11 +2,10 @@
 
 class Ticket extends CI_Controller {
 
-	var $template_data = array();
-
 	function __construct()
 	{
 		parent::__construct();
+		$this->template_data = [];
 		$this->template_data['active_menu'] = 'ticket';
 	}
 
