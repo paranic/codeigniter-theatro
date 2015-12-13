@@ -26,7 +26,7 @@
 							</tr>
 						</thead>
 						<tbody>
-<?foreach($troupes as $troupe){?>
+<?php foreach($troupes as $troupe){?>
 							<tr>
 								<td><?=$troupe->record_id?>
 								<td><?=$troupe->name?>
@@ -34,7 +34,7 @@
 									<a href="/troupe/edit/<?=$troupe->record_id?>"  class="btn btn-outline btn-primary btn-xs">επεξεργασία</a>
 								</td>
 							</tr>
-<?}?>
+<?php }?>
 						</tbody>
 					</table>
 				</div>

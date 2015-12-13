@@ -26,7 +26,7 @@
 							</tr>
 						</thead>
 						<tbody>
-<?foreach($tickets as $ticket){?>
+<?php foreach($tickets as $ticket){?>
 							<tr>
 								<td><?=$ticket->record_id?>
 								<td><?=$ticket->name?>
@@ -34,7 +34,7 @@
 									<a href="/ticket/edit/<?=$ticket->record_id?>"  class="btn btn-outline btn-primary btn-xs">επεξεργασία</a>
 								</td>
 							</tr>
-<?}?>
+<?php }?>
 						</tbody>
 					</table>
 				</div>

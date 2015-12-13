@@ -75,27 +75,27 @@
                     <ul class="nav" id="side-menu">
 
                         <li>
-                            <a <?if($this->uri->segment(1)=='dashboard'){?>class="active"<?}?> href="/"><i class="fa fa-dashboard fa-fw"></i> Ταμπλό</a>
+                            <a <?php if($this->uri->segment(1)=='dashboard'){?>class="active"<?php }?> href="/"><i class="fa fa-dashboard fa-fw"></i> Ταμπλό</a>
                         </li>
 
                         <li>
-                            <a <?if($this->uri->segment(1)=='theater'){?>class="active"<?}?> href="/theater"><i class="fa fa-university fa-fw"></i> Θέατρα</a>
+                            <a <?php if($this->uri->segment(1)=='theater'){?>class="active"<?php }?> href="/theater"><i class="fa fa-university fa-fw"></i> Θέατρα</a>
                         </li>
 
 						<li>
-                            <a <?if($this->uri->segment(1)=='tickets'){?>class="active"<?}?> href="/ticket"><i class="fa fa-ticket fa-fw"></i> Εισιτήρια</a>
+                            <a <?php if($this->uri->segment(1)=='tickets'){?>class="active"<?php }?> href="/ticket"><i class="fa fa-ticket fa-fw"></i> Εισιτήρια</a>
                         </li>
 
                         <li>
-                            <a <?if($this->uri->segment(1)=='troupe'){?>class="active"<?}?> href="/troupe"><i class="fa fa-users fa-fw"></i> Θίασοι</a>
+                            <a <?php if($this->uri->segment(1)=='troupe'){?>class="active"<?php }?> href="/troupe"><i class="fa fa-users fa-fw"></i> Θίασοι</a>
                         </li>
 
                         <li>
-                            <a <?if($this->uri->segment(1)=='performance'){?>class="active"<?}?> href="/performance"><i class="fa fa-child fa-fw"></i> Παραστάσεις</a>
+                            <a <?php if($this->uri->segment(1)=='performance'){?>class="active"<?php }?> href="/performance"><i class="fa fa-child fa-fw"></i> Παραστάσεις</a>
                         </li>
 
 						<li>
-                            <a <?if($this->uri->segment(1)=='statistics'){?>class="active"<?}?> href="/statistics"><i class="fa fa-bar-chart-o fa-fw"></i> Στατιστικά</a>
+                            <a <?php if($this->uri->segment(1)=='statistics'){?>class="active"<?php }?> href="/statistics"><i class="fa fa-bar-chart-o fa-fw"></i> Στατιστικά</a>
                         </li>
 
                     </ul>
@@ -107,17 +107,17 @@
         <!-- Page Content -->
         <div id="page-wrapper">
 
-<?if($this->session->flashdata('message')){?>
+<?php if($this->session->flashdata('message')){?>
 			<div class="alert alert-warning">
 <?=$this->session->flashdata('message')?>
 			</div>
-<?}?>
+<?php }?>
 
-<?if(isset($error_message)){?>
+<?php if(isset($error_message)){?>
 			<div class="alert alert-danger">
 <?=$error_message?>
 			</div>
-<?}?>
+<?php }?>
 
 <?=$body?>
 

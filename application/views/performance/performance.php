@@ -20,9 +20,9 @@
 								<label>Θέατρο</label>
 								<select class="form-control" name="theater_record_id">
 									<option>επιλέξτε θέατρο</option>
-<?foreach($theaters as $theater){?>
+<?php foreach($theaters as $theater){?>
 									<option value="<?=$theater->record_id?>" <?=set_select('theater_record_id', $theater->record_id, ($theater->record_id==$performance->theater_record_id))?>><?=$theater->name?></option>
-<?}?>
+<?php }?>
 								</select>
 							</div>
 
@@ -30,9 +30,9 @@
 								<label>Θίασος</label>
 								<select class="form-control" name="troupe_record_id">
 									<option value="" <?=set_select('troupe_record_id', $performance->troupe_record_id)?>>επιλέξτε θίασο</option>
-<?foreach($troupes as $troupe){?>
+<?php foreach($troupes as $troupe){?>
 									<option value="<?=$troupe->record_id?>" <?=set_select('troupe_record_id', $troupe->record_id, ($troupe->record_id==$performance->troupe_record_id))?>><?=$troupe->name?></option>
-<?}?>
+<?php }?>
 								</select>
 							</div>
 

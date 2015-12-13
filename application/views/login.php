@@ -44,9 +44,9 @@
                         <h4 class="panel-title text-center">≈ Theatrø ≈</h4>
                     </div>
                     <div class="panel-body">
-<?if (isset($error_message)){?>
+<?php if (isset($error_message)){?>
 						<div class="alert alert-danger" role="alert"><?=$error_message?></div>
-<?}?>
+<?php }?>
                         <form role="form" method="post">
                             <fieldset>
                                 <div class="form-group form-group-lg">

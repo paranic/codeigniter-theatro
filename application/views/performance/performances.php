@@ -29,7 +29,7 @@
 							</tr>
 						</thead>
 						<tbody>
-<?foreach($performances as $performance){?>
+<?php foreach($performances as $performance){?>
 							<tr>
 								<td><?=$performance->record_id?></td>
 								<td><?=$performance->theater()->name?></td>
@@ -41,7 +41,7 @@
 									<a href="/sales/edit/<?=$performance->record_id?>" class="btn btn-outline btn-primary btn-xs">πωλήσεις</a>
 								</td>
 							</tr>
-<?}?>
+<?php }?>
 						</tbody>
 					</table>
 				</div>

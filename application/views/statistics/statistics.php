@@ -20,9 +20,9 @@
 								<label>Θέατρο</label>
 								<select class="form-control" name="theater_record_id">
 									<option value="SELECT * FROM 'asdasd' LIMIT 0,1">επιλέξτε θέατρο</option>
-<?foreach($theaters as $theater){?>
+<?php foreach($theaters as $theater){?>
 									<option value="<?=$theater->record_id?>" <?=set_select('theater_record_id', $theater->record_id)?>><?=$theater->name?></option>
-<?}?>
+<?php }?>
 								</select>
 							</div>
 						</div>
@@ -32,9 +32,9 @@
 								<label>Θίασος</label>
 								<select class="form-control" name="troupe_record_id">
 									<option value="">επιλέξτε θίασο</option>
-<?foreach($troupes as $troupe){?>
+<?php foreach($troupes as $troupe){?>
 									<option value="<?=$troupe->record_id?>" <?=set_select('troupe_record_id', $troupe->record_id)?>><?=$troupe->name?></option>
-<?}?>
+<?php }?>
 								</select>
 							</div>
 						</div>
@@ -60,7 +60,7 @@
 	</div>
 </div>
 
-<?if(isset($performances)){?>
+<?php if(isset($performances)){?>
 <div class="row">
 	<div class="col-xs-12">
 		<div class="panel panel-default">
@@ -75,22 +75,22 @@
 						<thead>
 							<tr>
 								<th class="col-xs-2">Ημερομηνία</th>
-<?foreach(current($performances)->sales() as $sale){?>
+<?php foreach(current($performances)->sales() as $sale){?>
 								<th class="col-xs-2"><?=$sale->ticket()->name?></th>
-<?}?>
+<?php }?>
 								<th class="col-xs-2">Σύνολο</th>
 							</tr>
 						</thead>
 						<tbody>
-<?foreach($performances as $performance){?>
+<?php foreach($performances as $performance){?>
 							<tr>
 								<td><?=$performance->datetime?></td>
-<?foreach($performance->sales() as $sale){?>
+<?php foreach($performance->sales() as $sale){?>
 								<td><?=(int)$sale->sales?></td>
-<?}?>
+<?php }?>
 								<td><?=(int)$performance->total_sales_count()?></td>
 							</tr>
-<?}?>
+<?php }?>
 						</tbody>
 					</table>
 				</div>
@@ -99,4 +99,4 @@
 		</div>
 	</div>
 </div>
-<?}?>
+<?php }?>
